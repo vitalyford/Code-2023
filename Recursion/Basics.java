@@ -22,6 +22,17 @@ public class Basics {
     }
 
 
+    public static int paradeCount(int n) {
+        if (n == 1) {
+            return 2;
+        }
+        if (n == 2) {
+            return 3;
+        }
+        return paradeCount(n - 1) + paradeCount(n - 2);
+    }
+
+
     public static int rabbits(int n, HashMap<Integer, Integer> memo) {
         if (memo.containsKey(n)) {
             return memo.get(n);
