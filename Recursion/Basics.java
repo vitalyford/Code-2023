@@ -53,5 +53,42 @@ public class Basics {
         // System.out.println(backwardString("A Santa lived as a devil at NASA"));
         HashMap<Integer, Integer> memo = new HashMap<>();
         System.out.println(rabbits(10, memo));
+        // Create an array with 100 integers that are all random and then sort the array in increasing order
+        int[] arr = new int[10];
+        Random rand = new Random();
+        for (int i = 0; i < arr.length; i++) {
+            int randomNum = rand.nextInt(1000);
+            arr[i] = randomNum;
+        }
+        Arrays.sort(arr);
+
+        int target = 500;
+        // Create a method that takes in the target and the array
+        // and returns the index of the target in the array
+        // or -1 if the target is not found in the array
+        int index = searchArray(arr, target);
+        System.out.println("The index of " + target + " is " + index);
+    }
+
+    private static int search(int[] arr, int target, int lower, int upper) {
+        if (lower > upper) {
+            return -1;
+        }
+        int mid = (lower + upper) / 2; // index
+        int val = arr[mid];
+
+        if (target == val) {
+            return mid;
+        }
+        else if (target < val) { // going to the left side
+            return search(arr, target, lower, mid - 1);
+        }
+        else { // going to the right side
+            return search(arr, target, mid + 1, upper);
+        }
+    }
+
+    public static int searchArray(int[] arr, int target) {
+        return search(arr, target, 0, arr.length - 1);
     }
 }
