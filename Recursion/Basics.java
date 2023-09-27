@@ -49,6 +49,7 @@ public class Basics {
 
 
     public static void main(String[] args) {
+        hanoi(20, "A", "C", "B");
         // System.out.println(factorial(20));
         // System.out.println(backwardString("A Santa lived as a devil at NASA"));
         HashMap<Integer, Integer> memo = new HashMap<>();
@@ -87,6 +88,21 @@ public class Basics {
             return search(arr, target, mid + 1, upper);
         }
     }
+
+
+    public static void hanoi(int n, String src, String dst, String spare) {
+        if (n == 1) {
+            System.out.println("Move a disk from " + src + " to " + dst);
+            return;
+        }
+        // Move n-1 disks from src to the spare
+        hanoi(n - 1, src, spare, dst);
+        // Move 1 disk from src to the dst
+        hanoi(1, src, dst, spare);
+        // Move n-1 disks from spare to the dst
+        hanoi(n - 1, spare, dst, src);
+    }
+
 
     public static int searchArray(int[] arr, int target) {
         return search(arr, target, 0, arr.length - 1);

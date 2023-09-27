@@ -1,20 +1,20 @@
 package CustomLinkedList;
 
-class Node {
-    Object item;
-    Node next;
+class Node<T> {
+    T item;
+    Node<T> next;
 
     public Node() {
         item = null;
         next = null;
     }
 
-    public Node(Object item) {
+    public Node(T item) {
         this.item = item;
         this.next = null;
     }
 
-    public Node(Object item, Node next) {
+    public Node(T item, Node<T> next) {
         this.item = item;
         this.next = next;
     }
@@ -24,12 +24,12 @@ class Node {
     // }
 }
 
-public class LinkedList {
-    private Node head;
+public class LinkedList<T> {
+    private Node<T> head;
     private int size;
 
     public LinkedList() {
-        head = new Node();
+        head = new Node<T>();
         size = 0;
     }
 
@@ -47,14 +47,14 @@ public class LinkedList {
      * @return the object found by the index.
      * @throws Exception
      */
-    public Object get(int index) throws Exception {
+    public T get(int index) throws Exception {
         if (index < 0 || index >= size) {
             throw new Exception("Dude, watch your index, you can do better than that. My code is bullet proof.");
         }
 
         index = Math.floorMod(index, size); // Not needed anymore
         int counter = -1;
-        Node n = head;
+        Node<T> n = head;
 
         do {
             counter++;
@@ -68,31 +68,31 @@ public class LinkedList {
     }
 
     // Add the end of the list
-    public void add(Object obj) {
+    public void add(T obj) {
         // Verify if we already have an item in the list
         if (size == 0 /* head.next == null */) {
-            Node n = new Node(obj);
+            Node<T> n = new Node<>(obj);
             head.next = n;
         } else { // Add the item if we already have stuff in the list
-            Node curr = head; // i = 0;
+            Node<T> curr = head; // i = 0;
             while (curr.next != null) { // i != length() - 1
                 curr = curr.next; // i++;
             }
             // for (; curr.next != null; curr = curr.next){}
 
-            Node n = new Node(obj);
+            Node<T> n = new Node<>(obj);
             curr.next = n;
         }
         size++;
     }
 
-    public Object replace(int index, Object obj) throws Exception {
+    public T replace(int index, T obj) throws Exception {
         if (index < 0 || index >= size) {
             throw new Exception("Dude, watch your index, you can do better than that. My code is bullet proof.");
         }
         // index = Math.floorMod(index, size); // Not needed anymore
         int counter = -1;
-        Node n = head;
+        Node<T> n = head;
 
         do {
             counter++;
@@ -108,9 +108,9 @@ public class LinkedList {
     }
 
     public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
+        LinkedList<Integer> ll = new LinkedList<>();
         ll.add(0);
-        ll.add(1);
+        ll.add(2);
         ll.add(2);
         ll.add(3);
 
