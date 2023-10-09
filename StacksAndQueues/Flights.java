@@ -47,6 +47,10 @@ public class Flights {
             System.out.println("Not possible.");
             return;
         }
+        else if (src.equals(dst)) {
+            System.out.println("You are already there!");
+            return;
+        }
 
         // TODO: Set the size to the number of nodes/verticies
         ArrayList<String> visited = new ArrayList<>();
@@ -72,7 +76,7 @@ public class Flights {
             }
             else if (nextHop.equals(dst)) {
                 System.out.println("Found it!");
-                printPath(cities);
+                printPath(cities, dst);
                 return;
             }
             // Move to the next city
@@ -81,8 +85,8 @@ public class Flights {
         }
     }
 
-    public static void printPath(Stack<String> cities) {
-        String out = "end";
+    public static void printPath(Stack<String> cities, String dst) {
+        String out = dst;
         while (!cities.isEmpty()) {
             out = cities.pop() + " -> " + out;
         }
