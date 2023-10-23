@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+// This class will take care of the flights
 public class Flights {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner sc = new Scanner(new File("StacksAndQueues/data.txt"));
