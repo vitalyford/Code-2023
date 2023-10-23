@@ -4,7 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
-// This class will take care of the flights
+// Well, I am also adding another comment
+//is there a way to chnage text color is vscode and or git hub?
 public class Flights {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner sc = new Scanner(new File("StacksAndQueues/data.txt"));
