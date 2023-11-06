@@ -10,6 +10,23 @@ class Point {
         this.y = y;
         this.x = x;
     }
+
+    @Override
+    public boolean equals(Object p) {
+        if (p instanceof Point) {
+            Point comp = (Point)p;
+            return x == comp.x && y == comp.y;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 101;
+        hash = 31 * hash + y;
+        hash = 31 * hash + x;
+        return hash;
+    }
 }
 
 public class WaterFill {
@@ -27,12 +44,16 @@ public class WaterFill {
         int width = room[0].length;
         // height is y, width is x
         // height is rows, width is columns
-        int[][] steps = new int[height][width];
+        // int[][] steps = new int[height][width];
+        HashMap<Point, Integer> steps = new HashMap<>();
 
         Queue<Point> q = new LinkedList<>();
 
-        q.add(new Point(startY, startX));
-        steps[startY][startX] = 1;
+        Point sPoint = new Point(startY, startX);
+        q.add(sPoint);
+        
+        steps.put(sPoint, 1);
+
         room[startY][startX] = 'W';
 
         // going north, east, south, and west
@@ -48,15 +69,18 @@ public class WaterFill {
                 int newY = p.y + dy[i];
 
                 if (room[newY][newX] == ' ') {
-                    q.add(new Point(newY, newX));
-                    steps[newY][newX] = steps[p.y][p.x] + 1;
+                    Point newPoint = new Point(newY, newX);
+                    q.add(newPoint);
+                    // steps[newY][newX] = steps[p.y][p.x] + 1;
+                    steps.put(newPoint, steps.get(p) + 1);
                     room[newY][newX] = 'W';
                 }
             }
 
             if (q.isEmpty()) {
                 print(room);
-                return steps[p.y][p.x];
+                // return steps[p.y][p.x];
+                return steps.get(p);
             }
         }
 
