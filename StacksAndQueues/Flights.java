@@ -55,7 +55,7 @@ public class Flights {
         }
 
         // TODO: Set the size to the number of nodes/verticies
-        ArrayList<String> visited = new ArrayList<>();
+        HashSet<String> visited = new HashSet<>();
 
         // LIFO = last in, first out
         Stack<String> cities = new Stack<>();
@@ -95,7 +95,7 @@ public class Flights {
         System.out.println(out);
     }
 
-    public static String findNextCityToHopTo(ArrayList<String> map, String curr, ArrayList<String> visited) {
+    public static String findNextCityToHopTo(ArrayList<String> map, String curr, HashSet<String> visited) {
         // curr is A
         for (String edge : map) {
             // edge is A -> B
